@@ -8,28 +8,39 @@ export default function LogInForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-        const result = await registerUser(username, password);
-        console.log("Result in Component: ", result);
+      const result = await registerUser(username, password);
+      console.log("Result in Component: ", result);
     } catch (error) {
-        console.log(error); 
+      console.log(error);
     }
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <h1 className="title">Register</h1>
+      <form onSubmit={handleSubmit} className="login-form">
+        <label className="label" htmlFor="username">
+          Username
+        </label>
         <input
           type="text"
+          id="username"
           name="username"
-          placeholder="username"
+          className="input"
+          placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label className="label" htmlFor="password">
+          Password
+        </label>
         <input
-          type="text"
+          type="password"
+          id="password"
           name="password"
-          placeholder="password"
+          className="input"
+          placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Submit</button>
+        <button className="button">Submit</button>
       </form>
     </div>
   );

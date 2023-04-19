@@ -9,17 +9,20 @@ function App() {
     <div className="app">
       <header className="head">
         <h2>Stranger Things</h2>
-        <h3 className="links">
-          <Link to="/">HOME</Link>
-          <Link to="/posts">POSTS</Link>
-          <Link to="/users">LOGIN</Link>
-        </h3>
       </header>
 
       <Routes>
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/users" element={<LogInForm />} />
       </Routes>
+
+      <footer>
+        <h3 className="links">
+          <Link to="/">HOME</Link>
+          <Link to="/posts">POSTS</Link>
+          <Link to="/users">LOGIN</Link>
+        </h3>
+      </footer>
     </div>
   );
 }
