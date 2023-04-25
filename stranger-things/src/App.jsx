@@ -9,35 +9,36 @@ import "./App.css";
 
 function App() {
   const { token, setToken } = useAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [links, setLinks] = useState("")
+  const [links, setLinks] = useState("");
 
   useEffect(() => {
     if (token === null) {
-      setLinks (
+      setLinks(
         <h3 className="links">
-            <Link to="/">HOME</Link>
-            <Link to="/posts">POSTS</Link>
-            <Link to="/users">LOGIN</Link>
-          </h3>
-      )
-      setIsLoggedIn(false);
-    }else {
-      setLinks (
+          <Link to="/">HOME</Link>
+          <Link to="/posts">POSTS</Link>
+          <Link to="/users">LOGIN</Link>
+        </h3>
+      );
+    } else {
+      setLinks(
         <h3 className="links">
-            <Link to="/">PROFILE</Link>
-            <Link to="/posts">POSTS</Link>
-            <Link to="/create-posts">CREATE POST</Link>
-            <Link to="/users" onClick={() =>{
+          <Link to="/">PROFILE</Link>
+          <Link to="/posts">POSTS</Link>
+          <Link to="/create-posts">CREATE POST</Link>
+          <Link
+            to="/users"
+            onClick={() => {
               setToken(null);
               localStorage.removeItem("token");
-            }}>LOGOUT</Link>
-          </h3>
-      )
-      setIsLoggedIn(true);
+            }}
+          >
+            LOGOUT
+          </Link>
+        </h3>
+      );
     }
-  }
-  , [token]);
+  }, [token]);
 
   return (
     <div className="app">

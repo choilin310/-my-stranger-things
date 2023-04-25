@@ -17,14 +17,16 @@ export function LoginForm() {
       setToken(result.data.token);
       localStorage.setItem("token", result.data.token);
       setIsLoggedIn(true);
-
     } catch (error) {
       console.log(error);
     }
   }
 
-  if (isLoggedIn){
-    return <Navigate to="/posts" />
+  if (isLoggedIn) {
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
+    return <Navigate to="/posts" />;
   }
 
   return (
