@@ -9,7 +9,7 @@ export default function CreatePost() {
   const [price, setPrice] = useState("");
   const { token } = useAuth();
 
-  if(token === undefined){
+  if(token === null){
     return(
       <div>
         <h1>Please login to create a post</h1>

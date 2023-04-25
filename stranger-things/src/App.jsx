@@ -3,6 +3,7 @@ import RegisterForm from "./components/RegisterForm";
 import { LoginForm } from "./components/LoginForm";
 import AllPosts from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
+import { HomePage } from "./components/Home";
 import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -23,7 +24,7 @@ function App() {
     } else {
       setLinks(
         <h3 className="links">
-          <Link to="/">PROFILE</Link>
+          <Link to="/POST_ID/messages">PROFILE</Link>
           <Link to="/posts">POSTS</Link>
           <Link to="/create-posts">CREATE POST</Link>
           <Link
@@ -48,6 +49,7 @@ function App() {
       </header>
 
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/users" element={<LoginForm />} />
         <Route path="/create-posts" element={<CreatePost />} />
