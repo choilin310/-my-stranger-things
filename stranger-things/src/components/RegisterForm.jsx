@@ -21,10 +21,10 @@ export default function RegisterForm() {
   }
 
   return (
-    <div className="login-container">
-      <h1 className="title">Register</h1>
-      <form onSubmit={handleSubmit} className="login-form">
-        <label className="label" htmlFor="username">
+    <div className="register-container">
+      <h1 className="register-title">Register</h1>
+      <form onSubmit={handleSubmit} className="register-form">
+        <label className="register-label" htmlFor="username">
           Username
         </label>
         <input
@@ -33,11 +33,11 @@ export default function RegisterForm() {
           type="text"
           id="username"
           name="username"
-          className="input"
+          className="register-input"
           placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label className="label" htmlFor="password">
+        <label className="register-label" htmlFor="password">
           Password
         </label>
         <input
@@ -46,11 +46,11 @@ export default function RegisterForm() {
           type="text"
           id="password"
           name="password"
-          className="input"
+          className="register-input"
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="button">Submit</button>
+        <button className="register-button">Submit</button>
       </form>
     </div>
   );

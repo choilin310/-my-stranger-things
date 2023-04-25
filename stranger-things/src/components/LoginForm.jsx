@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { loginUser } from "../API/api";
+import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  const { token, setToken } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
