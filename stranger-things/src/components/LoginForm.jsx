@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { loginUser } from "../API/api";
 import useAuth from "../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { token, setToken } = useAuth();
 
   async function handleSubmit(e) {
@@ -15,9 +16,15 @@ export function LoginForm() {
       console.log("Result in Component: ", result);
       setToken(result.data.token);
       localStorage.setItem("token", result.data.token);
+      setIsLoggedIn(true);
+
     } catch (error) {
       console.log(error);
     }
+  }
+
+  if (isLoggedIn){
+    return <Navigate to="/posts" />
   }
 
   return (
@@ -29,6 +36,7 @@ export function LoginForm() {
             handleSubmit(e);
           }}
           className="login-form"
+          action="/posts"
         >
           <label className="label" htmlFor="username">
             Username

@@ -9,10 +9,11 @@ import "./App.css";
 
 function App() {
   const { token, setToken } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [links, setLinks] = useState("")
 
   useEffect(() => {
-    if (token === undefined) {
+    if (token === null) {
       setLinks (
         <h3 className="links">
             <Link to="/">HOME</Link>
@@ -20,18 +21,20 @@ function App() {
             <Link to="/users">LOGIN</Link>
           </h3>
       )
+      setIsLoggedIn(false);
     }else {
       setLinks (
         <h3 className="links">
             <Link to="/">PROFILE</Link>
             <Link to="/posts">POSTS</Link>
             <Link to="/create-posts">CREATE POST</Link>
-            <Link onClick={() =>{
-              setToken(undefined);
+            <Link to="/users" onClick={() =>{
+              setToken(null);
               localStorage.removeItem("token");
             }}>LOGOUT</Link>
           </h3>
       )
+      setIsLoggedIn(true);
     }
   }
   , [token]);
