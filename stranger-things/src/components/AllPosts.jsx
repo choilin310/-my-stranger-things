@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { fetchAllPost, deletePosts } from "../API/api";
 import { Navigate, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 export default function AllPosts() {
   const [data, setData] = useState([]);
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const navigate = useNavigate();
 
   async function getPost() {
@@ -20,30 +20,30 @@ export default function AllPosts() {
   return (
     <div className="all-post">
       {data.length > 0 &&
-        data.map((posts) => {
+        data.map((post) => {
           return (
-            <div className="post" key={posts._id}>
+            <div className="post" key={post._id}>
               <h1 className="post-username">
-                Username: {posts.author.username}
+                Username: {post.author.username}
               </h1>
-              <h2 className="post-title">Title: {posts.title}</h2>
-              <p className="post-description">{posts.description}</p>
-              <h5 className="post-price">Price: {posts.price}</h5>
+              <h2 className="post-title">Title: {post.title}</h2>
+              <p className="post-description">{post.description}</p>
+              <h5 className="post-price">Price: {post.price}</h5>
               <div className="btn-container">
                 {token && (
                   <button
                     className="message-post-btn"
-                    onClick={() => navigate("/messages")}
+                    onClick={() => navigate("/post/:postId/messages")}
                   >
                     Message
                   </button>
                 )}
-                {token && (
+                {user._id === post.author._id && token && (
                   <button
                     className="delete-post-btn"
                     onClick={async (e) => {
                       e.preventDefault();
-                      await deletePosts(token, posts._id);
+                      await deletePosts(token, post._id);
                       window.location.reload();
                     }}
                   >

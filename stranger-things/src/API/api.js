@@ -96,25 +96,42 @@ export async function deletePosts(token, postId) {
   }
 }
 
-export async function postMessage(token, postId, messageContent) {
+
+export async function fetchMe(token) {
+  try {
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log("result in FetchME", result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function postMessage(postId, token, messageContent) {
   try {
     const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         message: {
-          content: messageContent
-        }
-      })
+          content: messageContent,
+        },
+      }),
     });
     const result = await response.json();
-    console.log(result);
-    return result
-  } catch (err) {
-    console.error(err);
+    console.log(result, "result from post message ");
+    return result;
+  } catch (error) {
+    console.log(error);
   }
 }
 

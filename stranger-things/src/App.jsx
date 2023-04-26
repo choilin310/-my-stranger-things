@@ -5,7 +5,7 @@ import AllPosts from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import { HomePage } from "./components/Home";
 import  PostMessage  from "./components/PostMessage"
-import useAuth from "./hooks/useAuth";
+import { useAuth } from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -25,7 +25,7 @@ function App() {
     } else {
       setLinks(
         <h3 className="links">
-          <Link to="/POST_ID/messages">PROFILE</Link>
+          <Link to="/users/me">PROFILE</Link>
           <Link to="/posts">POSTS</Link>
           <Link to="/create-posts">CREATE POST</Link>
           <Link
@@ -49,7 +49,7 @@ function App() {
         {links}
       </header>
       <Routes>
-        <Route path="/POST_ID/messages" element={<PostMessage />} />
+      <Route path="/post/:postId/messages" element={<PostMessage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/users" element={<LoginForm />} />

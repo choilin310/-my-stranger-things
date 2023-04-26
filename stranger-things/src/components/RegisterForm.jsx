@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { registerUser } from "../API/api";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");

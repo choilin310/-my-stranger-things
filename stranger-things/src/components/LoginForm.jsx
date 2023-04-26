@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginUser } from "../API/api";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import { Link, Navigate } from "react-router-dom";
 
 export function LoginForm({setLoggedIn}) {
