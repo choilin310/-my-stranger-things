@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { fetchAllPost, deletePosts } from "../API/api";
+import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-export default function AllPosts() {
+function handleMessages() {
+  Navigate("/messages");
+}
+
+
+export default function AllPosts({ loggedIn }) {
   const [data, setData] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
   const { token } = useAuth();
+  const navigate = useNavigate();
 
   async function getPost() {
     const postList = await fetchAllPost();
@@ -30,17 +34,31 @@ export default function AllPosts() {
               <h2 className="post-title">Title: {posts.title}</h2>
               <p className="post-description">{posts.description}</p>
               <h5 className="post-price">Price: {posts.price}</h5>
-              <button
-                className="delete-post-btn"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await deletePosts(token, posts._id);
-                  window.location.reload();
-                }}
-              >
-                {" "}
-                Delete Post
-              </button>
+              <div className="btn-container">
+                {loggedIn ? (
+                  <div>
+                    <button
+                      className="delete-post-btn"
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await deletePosts(token, posts._id);
+                        window.location.reload();
+                      }}
+                    >
+                      {" "}
+                      Delete Post
+                    </button>
+                    <button
+                      className="message-post-btn"
+                      onClick={handleMessages}
+                    >
+                      message
+                    </button>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+              </div>
             </div>
           );
         })}

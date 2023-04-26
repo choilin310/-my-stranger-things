@@ -34,7 +34,7 @@ export async function registerUser(username, password) {
   }
 }
 
-export async function loginUser(username, password) {
+export async function loginUser(username, password, setLoggedIn) {
   try {
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
@@ -50,6 +50,7 @@ export async function loginUser(username, password) {
     });
     const result = await response.json();
     console.log(result);
+    setLoggedIn(true);
     return result;
   } catch (error) {
     console.log(error);
@@ -96,17 +97,17 @@ export async function deletePosts(token, postId) {
   }
 }
 
-export async function postMessage() {
+export async function postMessage(token, postId, messageContent) {
   try {
-    const response = await fetch(`${BASE_URL}/posts/5e8929ddd439160017553e06/messages`, {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         message: {
-          content: "Do you still have this?  Would you take $10 less?"
+          content: messageContent
         }
       })
     });
@@ -117,3 +118,4 @@ export async function postMessage() {
     console.error(err);
   }
 }
+

@@ -11,7 +11,7 @@ export default function RegisterForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await registerUser(username, password);
+      const result = await registerUser(username, password );
       console.log("Result in Component: ", result);
       setToken(result.data.token);
       localStorage.setItem("token", result.data.token);

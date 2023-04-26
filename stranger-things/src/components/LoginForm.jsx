@@ -3,7 +3,7 @@ import { loginUser } from "../API/api";
 import useAuth from "../hooks/useAuth";
 import { Link, Navigate } from "react-router-dom";
 
-export function LoginForm() {
+export function LoginForm({setLoggedIn}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -12,7 +12,7 @@ export function LoginForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await loginUser(username, password);
+      const result = await loginUser(username, password, setLoggedIn);
       console.log("Result in Component: ", result);
       setToken(result.data.token);
       localStorage.setItem("token", result.data.token);

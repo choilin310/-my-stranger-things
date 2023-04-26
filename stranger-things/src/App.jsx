@@ -4,6 +4,7 @@ import { LoginForm } from "./components/LoginForm";
 import AllPosts from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import { HomePage } from "./components/Home";
+import  PostMessage  from "./components/PostMessage"
 import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -11,6 +12,8 @@ import "./App.css";
 function App() {
   const { token, setToken } = useAuth();
   const [links, setLinks] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
 
   useEffect(() => {
     if (token === null) {
@@ -49,9 +52,10 @@ function App() {
       </header>
 
       <Routes>
+        <Route path="/POST_ID/messages" element={<PostMessage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/posts" element={<AllPosts />} />
-        <Route path="/users" element={<LoginForm />} />
+        <Route path="/posts" element={<AllPosts loggedIn={loggedIn} />} />
+        <Route path="/users" element={<LoginForm setLoggedIn={setLoggedIn}/>} />
         <Route path="/create-posts" element={<CreatePost />} />
         <Route path="/users/register" element={<RegisterForm />} />
       </Routes>
