@@ -12,8 +12,6 @@ import "./App.css";
 function App() {
   const { token, setToken } = useAuth();
   const [links, setLinks] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
 
   useEffect(() => {
     if (token === null) {
@@ -50,12 +48,11 @@ function App() {
         <h2>Stranger Things</h2>
         {links}
       </header>
-
       <Routes>
         <Route path="/POST_ID/messages" element={<PostMessage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/posts" element={<AllPosts loggedIn={loggedIn} />} />
-        <Route path="/users" element={<LoginForm setLoggedIn={setLoggedIn}/>} />
+        <Route path="/posts" element={<AllPosts />} />
+        <Route path="/users" element={<LoginForm />} />
         <Route path="/create-posts" element={<CreatePost />} />
         <Route path="/users/register" element={<RegisterForm />} />
       </Routes>

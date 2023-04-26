@@ -265,10 +265,6 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-.delete-post-btn:hover {
-  background-color: #e55c3d;
-}
-
 /* Home Page css */
 
 .home-container {
@@ -291,4 +287,18 @@ body {
   font-size: 24px;
   color: #333;
   margin-bottom: 24px;
+}
+
+/* message button*/
+
+.message-post-btn {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin: 10px;
 }

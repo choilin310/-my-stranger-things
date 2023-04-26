@@ -34,7 +34,7 @@ export async function registerUser(username, password) {
   }
 }
 
-export async function loginUser(username, password, setLoggedIn) {
+export async function loginUser(username, password) {
   try {
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
@@ -50,7 +50,6 @@ export async function loginUser(username, password, setLoggedIn) {
     });
     const result = await response.json();
     console.log(result);
-    setLoggedIn(true);
     return result;
   } catch (error) {
     console.log(error);
