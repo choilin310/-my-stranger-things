@@ -3,10 +3,6 @@ import { fetchAllPost, deletePosts } from "../API/api";
 import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-function handleMessages() {
-  Navigate("/messages");
-}
-
 export default function AllPosts() {
   const [data, setData] = useState([]);
   const { token } = useAuth();
@@ -34,21 +30,27 @@ export default function AllPosts() {
               <p className="post-description">{posts.description}</p>
               <h5 className="post-price">Price: {posts.price}</h5>
               <div className="btn-container">
-              <button className="message-post-btn" onClick={handleMessages}>
-                  Message
-                </button>
-                <button
-                  className="delete-post-btn"
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    await deletePosts(token, posts._id);
-                    window.location.reload();
-                  }}
-                >
-                  {" "}
-                  Delete Post
-                </button>
-             </div>
+                {token && (
+                  <button
+                    className="message-post-btn"
+                    onClick={() => navigate("/messages")}
+                  >
+                    Message
+                  </button>
+                )}
+                {token && (
+                  <button
+                    className="delete-post-btn"
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      await deletePosts(token, posts._id);
+                      window.location.reload();
+                    }}
+                  >
+                    Delete Post
+                  </button>
+                )}
+              </div>
             </div>
           );
         })}
