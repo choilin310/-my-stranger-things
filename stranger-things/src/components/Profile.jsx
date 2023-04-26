@@ -16,14 +16,28 @@ function Profile() {
     }
   }, [token, user]);
 
+  if (messages.length === 0) {
+    return (
+      <div className="noMessage-container">
+        <h1 className="noMessage-title">{token && `Welcome ${user.username}`}</h1>
+        <h3 className="noMessage-subtitle">My messages</h3>
+        <div className="noMessage-paragraph">No messages</div>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      <h1 className="title">{token && `Welcome, ${user.username}`}</h1>
+      <h1 className="title">{token && `Welcome ${user.username}`}</h1>
       <h3 className="subtitle">My messages</h3>
       <ul className="messages-list">
         {messages.map((message, index) => (
           <li key={index} className="message">
-            {message.content}
+            <div className="message-header">
+              <span className="message-from">From: {message.fromUser.username}</span>
+              <span className="message-about">Post: {message.post.title}</span>
+            </div>
+            <div className="message-content">{message.content}</div>
           </li>
         ))}
       </ul>

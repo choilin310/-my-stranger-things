@@ -26,7 +26,7 @@ export function LoginForm({setLoggedIn}) {
     setTimeout(() => {
       window.location.reload();
     }, 0);
-    return <Navigate to="/posts" />;
+    return <Navigate to="/users/me" />;
   }
 
   return (
@@ -72,7 +72,9 @@ export function LoginForm({setLoggedIn}) {
 
           <p className="signup-link">
             Don't have an account?
-            <Link to="/users/register"> Sign up!</Link>
+          </p>
+          <p>
+          <Link to="/users/register" className="link-without-underline"> Sign up!</Link>
           </p>
         </form>
       </div>
