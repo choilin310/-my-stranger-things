@@ -4,8 +4,9 @@ import { LoginForm } from "./components/LoginForm";
 import AllPosts from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import { HomePage } from "./components/Home";
-import  PostMessage  from "./components/PostMessage"
+import PostMessage from "./components/PostMessage";
 import { useAuth } from "./hooks/useAuth";
+import Profile from "./components/Profile";
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -49,12 +50,13 @@ function App() {
         {links}
       </header>
       <Routes>
-      <Route path="/post/:postId/messages" element={<PostMessage />} />
+        <Route path="/posts/:postId/messages" element={<PostMessage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/users" element={<LoginForm />} />
         <Route path="/create-posts" element={<CreatePost />} />
         <Route path="/users/register" element={<RegisterForm />} />
+        <Route path="/users/me" element={<Profile />} />
       </Routes>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllPost, deletePosts } from "../API/api";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export default function AllPosts() {
@@ -31,12 +31,9 @@ export default function AllPosts() {
               <h5 className="post-price">Price: {post.price}</h5>
               <div className="btn-container">
                 {token && (
-                  <button
-                    className="message-post-btn"
-                    onClick={() => navigate("/post/:postId/messages")}
-                  >
-                    Message
-                  </button>
+                  <Link to={`${post._id}/messages`}>
+                    <button className="message-post-btn">Message</button>
+                  </Link>
                 )}
                 {user._id === post.author._id && token && (
                   <button
