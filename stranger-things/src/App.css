@@ -395,3 +395,22 @@ body {
   font-size: 0.875rem;
   line-height: 1.5;
 }
+
+.searchBar{
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .all-post {
+    padding: 10px;
+  }
+
+  .post {
+    width: 100%;
+  }
+}
