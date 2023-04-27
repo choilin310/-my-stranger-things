@@ -8,6 +8,7 @@ import PostMessage from "./components/PostMessage";
 import { useAuth } from "./hooks/useAuth";
 import Profile from "./components/Profile";
 import { useEffect, useState } from "react";
+import EditPost from "./components/EditPost";
 import "./App.css";
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         {links}
       </header>
       <Routes>
+        <Route path="/posts/edit/:postId" element={<EditPost />} />
         <Route path="/posts/:postId/messages" element={<PostMessage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<AllPosts />} />

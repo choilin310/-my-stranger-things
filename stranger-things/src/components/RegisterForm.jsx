@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { registerUser } from "../API/api";
-import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { setToken } = useAuth();
-
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords must match");
+      return;
+    } else {
+      navigate("/users");
+    }
     try {
-      const result = await registerUser(username, password );
+      const result = await registerUser(username, password, confirmPassword);
       console.log("Result in Component: ", result);
-      setToken(result.data.token);
-      localStorage.setItem("token", result.data.token);
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +53,16 @@ export default function RegisterForm() {
           className="register-input"
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          required
+          minLength={5}
+          type="text"
+          id="confirm-password"
+          name="confirm-password"
+          className="register-input"
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <button className="register-button">Submit</button>
       </form>

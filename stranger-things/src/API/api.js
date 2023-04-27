@@ -12,7 +12,7 @@ export async function fetchAllPost() {
   }
 }
 
-export async function registerUser(username, password) {
+export async function registerUser(username, password, confirmPassword) {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -26,6 +26,7 @@ export async function registerUser(username, password) {
         },
       }),
     });
+
     const result = await response.json();
     console.log(result);
     return result;
@@ -96,7 +97,6 @@ export async function deletePosts(token, postId) {
   }
 }
 
-
 export async function fetchMe(token) {
   try {
     const response = await fetch(`${BASE_URL}/users/me`, {
@@ -135,3 +135,25 @@ export async function postMessage(postId, token, messageContent) {
   }
 }
 
+export async function updatePost(token, postId, title, description, price) {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+        },
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}

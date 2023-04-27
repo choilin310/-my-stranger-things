@@ -3,7 +3,7 @@ import { fetchMe } from "../API/api";
 import { useAuth } from "../hooks/useAuth";
 
 function Profile() {
-  const { token, user, setToken } = useAuth();
+  const { token, user } = useAuth();
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
