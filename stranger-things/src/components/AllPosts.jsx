@@ -47,12 +47,12 @@ export default function AllPosts() {
             <div className="btn-container">
               {user._id !== post.author._id &&token && (
                 <Link to={`${post._id}/messages`}>
-                  <button className="message-post-btn">Message</button>
+                  <button className="post-btn">Message</button>
                 </Link>
               )}
               {user._id === post.author._id && token && (
                 <button
-                  className="delete-post-btn"
+                  className="post-btn"
                   onClick={async (e) => {
                     e.preventDefault();
                     await deletePosts(token, post._id);
@@ -64,7 +64,7 @@ export default function AllPosts() {
               )}
               {user._id === post.author._id && token && (
                 <Link to={`/posts/edit/${post._id}`}>
-                  <button className="edit-post-btn">Edit Post</button>
+                  <button className="post-btn">Edit Post</button>
                 </Link>
               )}
             </div>

@@ -20,18 +20,23 @@ export default function Message() {
   }
 
   return (
-    <div>
+    <div class="message-form">
       <form onSubmit={handleSubmit}>
-        Message
+        <label for="message">Message</label>
         <input
+          class="message-input"
           value={message}
           onChange={(e) => {
             setMessage(e.target.value);
           }}
           type="text"
           id="message"
+          placeholder="Type your message here"
+          required
         />
-        <button type="submit">Send Message</button>
+        <button class="message-send-btn" type="submit">
+          Send Message
+        </button>
       </form>
     </div>
   );
